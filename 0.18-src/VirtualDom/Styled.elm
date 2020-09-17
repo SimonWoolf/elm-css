@@ -1,36 +1,35 @@
-module VirtualDom.Styled
-    exposing
-        ( Classname
-        , Node
-        , Property(Property)
-        , attribute
-        , attributeNS
-        , getClassname
-        , keyedNode
-        , lazy
-        , lazy2
-        , lazy3
-        , makeSnippet
-        , map
-        , mapProperty
-        , node
-        , on
-        , onWithOptions
-        , property
-        , text
-        , toUnstyled
-        , unstyledNode
-        , unstyledProperty
-        )
+module VirtualDom.Styled exposing
+    ( Classname
+    , Node
+    , Property(Property)
+    , attribute
+    , attributeNS
+    , getClassname
+    , keyedNode
+    , lazy
+    , lazy2
+    , lazy3
+    , makeSnippet
+    , map
+    , mapProperty
+    , node
+    , on
+    , onWithOptions
+    , property
+    , text
+    , toUnstyled
+    , unstyledNode
+    , unstyledProperty
+    )
 
 import Css.Preprocess as Preprocess exposing (Style)
 import Css.Preprocess.Resolve as Resolve
 import Css.Structure as Structure
 import Dict exposing (Dict)
+import ElmCssVendor.Murmur3 as Murmur3
 import Hex
 import Json.Decode
 import Json.Encode
-import Murmur3
 import VirtualDom
 
 
@@ -176,6 +175,7 @@ getClassname styles =
         -- This way img [ css [ foo bar ], css [] ] wipes out the styles
         -- as expected. (The latter will generate a classname of "_unstyled")
         "unstyled"
+
     else
         -- TODO Replace this comically inefficient implementation
         -- with crawling these union types and building up a hash along the way.
@@ -270,6 +270,7 @@ accumulateStyles :
 accumulateStyles (Property property newStyles classname) styles =
     if List.isEmpty newStyles then
         styles
+
     else
         Dict.insert classname newStyles styles
 
@@ -330,6 +331,7 @@ stylesFromPropertiesHelp candidate properties =
                 -- so that img [ css [ foo bar ], css [] ] wipes out the styles
                 -- as expected. (The latter will generate a classname of "_unstyled")
                 stylesFromPropertiesHelp candidate rest
+
             else
                 stylesFromPropertiesHelp (Just ( classname, styles )) rest
 
@@ -452,6 +454,7 @@ getUnusedKey default pairs =
             in
             if containsKey newKey rest then
                 getUnusedKey newKey rest
+
             else
                 newKey
 
@@ -465,5 +468,6 @@ containsKey key pairs =
         ( str, _ ) :: rest ->
             if key == str then
                 True
+
             else
                 containsKey key rest
