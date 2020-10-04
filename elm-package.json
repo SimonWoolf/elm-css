@@ -1,7 +1,7 @@
 {
-    "version": "15.1.0",
-    "summary": "Typed CSS in Elm.",
-    "repository": "https://github.com/rtfeldman/elm-css.git",
+    "version": "15.2.0",
+    "summary": "Typed CSS in Elm - 0.18-supporting fork",
+    "repository": "https://github.com/simonwoolf/elm-css.git",
     "license": "BSD-3-Clause",
     "source-directories": [
         "0.18-src"

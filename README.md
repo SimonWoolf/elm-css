@@ -1,3 +1,7 @@
+# Fork
+
+minor form of rtfeldman/elm-css to backport murmurhash vendoring to a version that supports 0.18
+
 # elm-css
 
 `elm-css` lets you define CSS in Elm. (For an Elm styling system that is a
